@@ -1,0 +1,124 @@
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Documentation FastSpring Subscription API for PHP</title>
+</head>
+<body>
+
+# About FastSpring #
+[FastSpring](http://www.fastspring.com) offers an innovative e-commerce engine designed to overcome ease of use, customer service, and cost issues that have plagued software e-commerce companies. We employ a customer-driven, iterative and collaborative Agile development process.
+
+# About FastSpring Subscription API for PHP #
+
+The FastSpring Subscription API for PHP allows for easy integration with FastSpring's subscription services. There is a example web application to demonstrate
+the usage of the API. All source code is released under the [MIT license](License.txt). It is open to contributions and its use is unrestricted.
+
+# How-to integrate
+
+Read our **[Integration Guide](https://support.fastspring.com/entries/238642-integration-overview)** for information on integrating your PHP application with FastSpring's subscription service.
+
+#FastSpring API for PHP#
+
+## Introduction ##
+
+FastSpring's Subscription API for PHP provides an interface for integrating PHP applications with FastSpring's subscription services.  It provides
+the necessary CRUD operations needed to manage subscriptions.
+
+## Class Library ##
+
+The FastSpring Subscription API class library provides the CRUD operations in a single class called FastSpring. This class and other classes
+used to pass the data in and out of the APIs are described below.
+
+	class FastSpring {
+		public $test_mode = false;
+		
+		public function __construct($store_id, $api_username, $api_password) { ... }
+		
+		public function createSubscription($product_ref, $customer_ref) { ... }
+		
+		public function getSubscription($subscription_ref) { ... }
+		
+		public function updateSubscription($subscriptionUpdate) { ... }
+		
+		public function cancelSubscription($subscription_ref) { ... }
+		
+		public function renewSubscription($subscription_ref) { ... }
+	}
+
+## How-to add the FastSpring Subscription API to your PHP application ##
+
+All that is needed to start using the FastSpring Subscription API in your PHP application is to include
+the fastspring.php file from your PHP files.
+
+Then you instantiate a new FastSpring object with the parameters that match your store's setup.
+
+* $store_id
+* $api_username
+* $api_password
+
+### Example ###
+
+	$fastspring = new FastSpring("your_store_id", "your_api_username", "your_api_password");
+
+### class FsprgSubscription ###
+	public $status;
+	public $statusChanged;
+	public $statusReason;
+	public $cancelable;
+	public $reference;
+	public $test;
+	public $customer;
+	public $customerUrl;
+	public $productName;
+	public $tags;
+	public $quantity;
+
+
+### class FsprgCustomer ###
+	public $firstName;
+	public $lastName;
+	public $company;
+	public $email;
+	public $phoneNumber;
+	
+
+### class FsprgSubscriptionUpdate ###
+	public function __construct($subscription_ref) { ... }	
+
+	public $productPath;
+	public $quantity;
+	public $tags;
+	public $noEndDate;
+	public $coupon;
+	public $proration;
+
+
+### class FsprgException ###
+	public $httpStatusCode;
+	public $errorCode;
+
+
+## Example1 PHP Application ##
+
+Demonstrates the usage of the FastSpring Subscription API in a simple web application that has a subscription page. 
+You will need to have an existing FastSpring store configured for subscriptions.  The following needs to be 
+configured in order to use this example:
+
+* A subscription product
+* Subscription Activated Notification
+* Subscription Deactivated Notification
+
+You need to modify include.php to modify the following values to match your store's settings:
+
+* $store_id
+* $api_username
+* $api_password
+* $test_mode
+* product_id
+
+You also need to set the $privateKey variable in activate.php and deactivate.php. This private key
+needs to match the private key in the Security tab of the Subscription Activated Notification
+and Subscription Deactivated Notification respectively.
+
+
+</body></html>
