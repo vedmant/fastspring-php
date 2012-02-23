@@ -4,7 +4,7 @@ include "../fastspring.php";
 define(customer_data_dir, "/var/tmp");
 define(product_id, "subprd1");
 
-$fastspring = new FastSpring("brumple", "Administrator", "litherlose");
+$fastspring = new FastSpring("your_store_id", "your_api_username", "your_api_password");
 $fastspring->test_mode = true;
 
 session_start();
