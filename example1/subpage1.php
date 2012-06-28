@@ -1,7 +1,7 @@
 <?php
 include "include.php";
 
-if (!isSubscribed($_SESSION["customer_ref"], $product_id)) {
+if (!isSubscribed($_SESSION["customer_ref"])) {
 	header("location:billing.php");
 	
 	exit();

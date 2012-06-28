@@ -11,7 +11,7 @@ session_start();
 
 $_SESSION["customer_ref"] = 1;
 
-function isSubscribed($customer_ref, $productId) {
+function isSubscribed($customer_ref) {
 	global $fastspring;
 	
 	if (isset($_SESSION["subscription_ref"])) {
