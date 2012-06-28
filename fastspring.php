@@ -36,7 +36,7 @@ class FastSpring {
 		$info = curl_getinfo($ch);
 		
 		if ($info["http_code"] == 200) {
-			set_error_handler(domDocumentErrorHandler);
+			set_error_handler("domDocumentErrorHandler");
 	
 			try {
 				$doc = new DOMDocument();
@@ -77,7 +77,7 @@ class FastSpring {
 		$info = curl_getinfo($ch);
 		
 		if ($info["http_code"] == 200) {
-			set_error_handler(domDocumentErrorHandler);
+			set_error_handler("domDocumentErrorHandler");
 	
 			try {
 				$doc = new DOMDocument();
@@ -119,7 +119,7 @@ class FastSpring {
 		$info = curl_getinfo($ch);
 		
 		if ($info["http_code"] == 200) {
-			set_error_handler(domDocumentErrorHandler);
+			set_error_handler("domDocumentErrorHandler");
 	
 			try {
 				$doc = new DOMDocument();
