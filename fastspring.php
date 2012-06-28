@@ -183,7 +183,7 @@ class FastSpring {
 	}
 	
 	private function addTestMode($url) {
-		if ($test_mode) {
+		if ($this->test_mode) {
 			if (strpos($url, '?') != false) {
 				$url = $url . "&mode=test";
 			} else {
