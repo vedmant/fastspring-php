@@ -32,6 +32,10 @@ class FastSpring {
 		curl_setopt($ch, CURLOPT_USERPWD, $this->api_username . ":" . $this->api_password);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
 		
+		// turn ssl certificate verification off, i get http response 0 otherwise
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
 		$response = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		
@@ -72,7 +76,11 @@ class FastSpring {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $subscriptionUpdate->toXML());
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-		 
+		
+		// turn ssl certificate verification off, i get http response 0 otherwise
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
 		$response = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		
@@ -114,7 +122,11 @@ class FastSpring {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, "");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-		 
+		
+		// turn ssl certificate verification off, i get http response 0 otherwise
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
 		$response = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		
@@ -157,7 +169,11 @@ class FastSpring {
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, "");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		 
+		
+		// turn ssl certificate verification off, i get http response 0 otherwise
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
 		$response = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		
