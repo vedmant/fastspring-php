@@ -90,6 +90,7 @@ Then you instantiate a new FastSpring object with the parameters that match your
 	public $tags;
 	public $noEndDate;
 	public $coupon;
+	public $discountDuration;
 	public $proration;
 
 
@@ -119,6 +120,8 @@ You need to modify include.php to modify the following values to match your stor
 You also need to set the $privateKey variable in activate.php and deactivate.php. This private key
 needs to match the private key in the Security tab of the Subscription Activated Notification
 and Subscription Deactivated Notification respectively.
+
+Please see `example1/INSTRUCTIONS.txt` for full, step by step configuration.
 
 
 </body></html>

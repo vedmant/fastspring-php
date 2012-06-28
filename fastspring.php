@@ -32,14 +32,18 @@ class FastSpring {
 		curl_setopt($ch, CURLOPT_USERPWD, $this->api_username . ":" . $this->api_password);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
 		
+		// turn ssl certificate verification off, i get http response 0 otherwise
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
 		$response = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		
 		if ($info["http_code"] == 200) {
-			set_error_handler(domDocumentErrorHandler);
+			set_error_handler("domDocumentErrorHandler");
 	
 			try {
-				$doc = new \DOMDocument();
+				$doc = new DOMDocument();
 		  		$doc->loadXML($response);
 	
 		  		$sub = $this->parseFsprgSubscription($doc);
@@ -54,7 +58,7 @@ class FastSpring {
 			$fsprgEx->httpStatusCode = $info["http_code"];
 		}
 		
-		if ($fsprgEx) {
+		if (isset($fsprgEx)) {
 			throw $fsprgEx;
 		}
 		
@@ -72,15 +76,19 @@ class FastSpring {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $subscriptionUpdate->toXML());
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-		 
+		
+		// turn ssl certificate verification off, i get http response 0 otherwise
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
 		$response = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		
 		if ($info["http_code"] == 200) {
-			set_error_handler(domDocumentErrorHandler);
+			set_error_handler("domDocumentErrorHandler");
 	
 			try {
-				$doc = new \DOMDocument();
+				$doc = new DOMDocument();
 			  	$doc->loadXML($response);
 			  	
 			  	$sub = $this->parseFsprgSubscription($doc);
@@ -97,7 +105,7 @@ class FastSpring {
 	  	
 	  	curl_close($ch);
 	  	
-	  	if ($fsprgEx) {
+	  	if (isset($fsprgEx)) {
 	  		throw $fsprgEx;
 	  	}
 	  	
@@ -114,15 +122,19 @@ class FastSpring {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, "");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-		 
+		
+		// turn ssl certificate verification off, i get http response 0 otherwise
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
 		$response = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		
 		if ($info["http_code"] == 200) {
-			set_error_handler(domDocumentErrorHandler);
+			set_error_handler("domDocumentErrorHandler");
 	
 			try {
-				$doc = new \DOMDocument();
+				$doc = new DOMDocument();
 			  	$doc->loadXML($response);
 			  	
 			  	$sub = $this->parseFsprgSubscription($doc);
@@ -141,7 +153,7 @@ class FastSpring {
 	  	
 	  	curl_close($ch);
 	  	
-	  	if ($fsprgEx) {
+	  	if (isset($fsprgEx)) {
 	  		throw $fsprgEx;
 	  	}
 	  	
@@ -157,7 +169,11 @@ class FastSpring {
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, "");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		 
+		
+		// turn ssl certificate verification off, i get http response 0 otherwise
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
 		$response = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		
@@ -169,7 +185,7 @@ class FastSpring {
 		
 		curl_close($ch);
 		
-		if ($fsprgEx) {
+		if (isset($fsprgEx)) {
 			throw $fsprgEx;
 		}
 	}
@@ -183,7 +199,7 @@ class FastSpring {
 	}
 	
 	private function addTestMode($url) {
-		if ($test_mode) {
+		if ($this->test_mode) {
 			if (strpos($url, '?') != false) {
 				$url = $url . "&mode=test";
 			} else {
@@ -254,6 +270,7 @@ class FsprgSubscriptionUpdate {
 	public $tags;
 	public $noEndDate;
 	public $coupon;
+	public $discountDuration;
 	public $proration;
 	
 	public function __construct($subscription_ref) {
@@ -261,7 +278,7 @@ class FsprgSubscriptionUpdate {
 	}
 	
 	public function toXML() {
-		$xmlResult = new \SimpleXMLElement("<subscription></subscription>");
+		$xmlResult = new SimpleXMLElement("<subscription></subscription>");
 		
 		if ($this->productPath) {
 			$xmlResult->productPath = $this->productPath;
@@ -277,6 +294,9 @@ class FsprgSubscriptionUpdate {
 		}
 		if ($this->coupon) {
 			$xmlResult->coupon = $this->coupon;
+		}
+		if ($this->discountDuration) {
+			$xmlResult->addChild("discount-duration", $this->discountDuration);
 		}
 		if (isset($this->proration)) {
 			if ($this->proration) {

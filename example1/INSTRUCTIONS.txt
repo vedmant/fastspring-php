@@ -1,0 +1,37 @@
+Full instructions to use this example php application. Follow these step by step. It took me quite a bit of debugging to fix the code and get this thing working.
+
+1. Decide where you will host this demo. Don't upload it yet, but note the location. Example: http://www.yoursite.com/fastspring-php
+
+2. If you haven't already, set up an API user account within springboard. After you create the acct, double check that the user has API access. For me, I had to go in a second time and enable API access for the account.
+
+3. Make sure you have a subscription product set up in springboard.
+
+4. Edit lines 5 and 7 of 'example1/include.php' with the values from Steps 2 and 3.
+
+5. Set up a notification in springboard for Subscription Activated Notification. Use NAME/VALUE parameters and point the live server URL to the URL of the 'example1/activate.php' file. Example: http://www.yoursite.com/fastspring-php/example1/activate.php
+
+6. On the Security tab of the Subscription Activated Notification, grab the private key and edit line 4 of 'example1/activate.php'
+
+7. On the HTTP parameters tab of the Subscription Activated Notification, set up two Name/Value parameters. The first 'name' is "customer_ref" and corresponding value "#{subscription.referrer}". The second 'name' is "subscription_ref" and corresponding value "#{subscription.reference}". Do not use the quotes when putting in these entries. These values are passed to and grabbed at lines 9-10 in 'activate.php'
+
+8. Same as Step 5, but for Subscription DEACTIVATED Notification. Point to the 'example1/deactivate.php' url. Example: http://www.yoursite.com/fastspring-php/example1/deactivate.php
+
+9. Same as Step 6, but for Subscription DEACTIVATED Notification. Edit the private key in 'example1/deactivate.php'
+
+10. Same as Step 7, but for Subscription DEACTIVATED Notification. Only one Name/Value parameter is needed: customer_ref / #{subscription.referrer}
+
+11. Upload the full directory to your website at http://www.yoursite.com/fastspring-php
+
+12. Ensure that the http://www.yoursite.com/fastspring-php/example1/tmpcustomers/ directory has write access. I just set it to 777 
+
+13. By default, line 8 of 'example1/include.php' leaves test mode ON, so that you can create test orders. Important: fastpsring stores are VERY sensitive to webbrowser cache. To proceed, clear your browser cache, close your browser, and restart it to make sure we use test mode.
+
+14. Navigate to http://www.yoursite.com/fastspring-php/example1/index.php
+
+15. Click the link for 'Subscription Page' on the left. Since this is your first time, it should take you to fastspring checkout. If you can choose a "test payment" method by giving your springboard user/pass, then test mode is correctly enabled. If you don't see this payment option, then you are not in test mode and might want to re-do Step 13.
+
+16. Once order is complete, revisit http://www.yoursite.com/fastspring-php/example1/index.php
+
+17. Again click on the 'Subscription Page' link on the left. This should now bring you do the demo management page.
+
+18. If instead you are taken back to your checkout, it means that something went wrong with the Subscription Activation Notification. Check that 'example1/tmpcustomers/1.txt' was created on your webserver. If it wasn't created, then your Subscription Activation Notification is either pointing to the wrong URL or the name/value parameters aren't correct.
