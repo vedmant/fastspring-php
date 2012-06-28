@@ -11,6 +11,7 @@ $customer_ref = $_POST["customer_ref"];
 if ($customer_ref == null) {
 	header("HTTP/1.0 404 Not Found");
 } else {
-	unlink("$customer_data_dir/$customer_ref.txt");
+	$file = customer_data_dir."/$customer_ref.txt";
+	unlink($file);
 }
 ?>
