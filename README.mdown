@@ -121,5 +121,7 @@ You also need to set the $privateKey variable in activate.php and deactivate.php
 needs to match the private key in the Security tab of the Subscription Activated Notification
 and Subscription Deactivated Notification respectively.
 
+Please see `example1/INSTRUCTIONS.txt` for full, step by step configuration.
+
 
 </body></html>
