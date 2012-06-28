@@ -39,7 +39,7 @@ class FastSpring {
 			set_error_handler(domDocumentErrorHandler);
 	
 			try {
-				$doc = new \DOMDocument();
+				$doc = new DOMDocument();
 		  		$doc->loadXML($response);
 	
 		  		$sub = $this->parseFsprgSubscription($doc);
@@ -80,7 +80,7 @@ class FastSpring {
 			set_error_handler(domDocumentErrorHandler);
 	
 			try {
-				$doc = new \DOMDocument();
+				$doc = new DOMDocument();
 			  	$doc->loadXML($response);
 			  	
 			  	$sub = $this->parseFsprgSubscription($doc);
@@ -122,7 +122,7 @@ class FastSpring {
 			set_error_handler(domDocumentErrorHandler);
 	
 			try {
-				$doc = new \DOMDocument();
+				$doc = new DOMDocument();
 			  	$doc->loadXML($response);
 			  	
 			  	$sub = $this->parseFsprgSubscription($doc);
@@ -261,7 +261,7 @@ class FsprgSubscriptionUpdate {
 	}
 	
 	public function toXML() {
-		$xmlResult = new \SimpleXMLElement("<subscription></subscription>");
+		$xmlResult = new SimpleXMLElement("<subscription></subscription>");
 		
 		if ($this->productPath) {
 			$xmlResult->productPath = $this->productPath;
