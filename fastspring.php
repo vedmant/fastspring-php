@@ -54,7 +54,7 @@ class FastSpring {
 			$fsprgEx->httpStatusCode = $info["http_code"];
 		}
 		
-		if ($fsprgEx) {
+		if (isset($fsprgEx)) {
 			throw $fsprgEx;
 		}
 		
@@ -97,7 +97,7 @@ class FastSpring {
 	  	
 	  	curl_close($ch);
 	  	
-	  	if ($fsprgEx) {
+	  	if (isset($fsprgEx)) {
 	  		throw $fsprgEx;
 	  	}
 	  	
@@ -141,7 +141,7 @@ class FastSpring {
 	  	
 	  	curl_close($ch);
 	  	
-	  	if ($fsprgEx) {
+	  	if (isset($fsprgEx)) {
 	  		throw $fsprgEx;
 	  	}
 	  	
@@ -169,7 +169,7 @@ class FastSpring {
 		
 		curl_close($ch);
 		
-		if ($fsprgEx) {
+		if (isset($fsprgEx)) {
 			throw $fsprgEx;
 		}
 	}
