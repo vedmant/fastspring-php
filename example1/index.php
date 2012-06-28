@@ -43,7 +43,7 @@ include 'include.php';
 		<div class="box">
 			<h3>Subscription Pages</h3>
 			<ul class="bottom">
-				<li class="first"><a href="/billing.php">Subscription Page</a></li>
+				<li class="first"><a href="billing.php">Subscription Page</a></li>
 			</ul>
 		</div>
 		<div class="box">

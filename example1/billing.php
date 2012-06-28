@@ -14,7 +14,7 @@ if (!$customer_data) {
 	exit();
 } else {
 	if (isSubscribed($customer_ref, $productId)) {
-		$redirectToUrl = "/subpage1.php";
+		$redirectToUrl = "subpage1.php";
 		 
 		header("Location: $redirectToUrl");
 		 

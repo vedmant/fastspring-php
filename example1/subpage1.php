@@ -2,7 +2,7 @@
 include "include.php";
 
 if (!isSubscribed($_SESSION["customer_ref"], $product_id)) {
-	header("location:/billing.php");
+	header("location:billing.php");
 	
 	exit();
 }
@@ -115,7 +115,7 @@ div.formRow span.formInput {
 		<div class="box">
 			<h3>Subscription Pages</h3>
 			<ul class="bottom">
-				<li class="first"><a href="/subpage1.php">Subscription Page</a></li>
+				<li class="first"><a href="subpage1.php">Subscription Page</a></li>
 			</ul>
 		</div>
 		<div class="box">
