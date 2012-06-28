@@ -1,7 +1,7 @@
 <?php
 include "../fastspring.php";
 
-define("customer_data_dir", "/var/tmp");
+define("customer_data_dir", "tmpcustomers");
 define("product_id", "subprd1");
 
 $fastspring = new FastSpring("your_store_id", "your_api_username", "your_api_password");
