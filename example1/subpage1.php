@@ -34,6 +34,9 @@ if (isset($_POST["cancel"])) {
 	if (isset($_POST["coupon"])) {
 		$update->coupon = $_POST["coupon"];
 	}
+	if (isset($_POST["discountduration"])) {
+		$update->discountDuration = $_POST["discountduration"];
+	}
 	if (isset($_POST["noenddate"])) {
 		$update->noEndDate = true;
 	}
@@ -195,6 +198,7 @@ div.formRow span.formInput {
 				<div class="formRow"><span class="formLabel">Tags:</span><span class="formInput"><input type="text" name="tags" value="<?php echo $getSub->tags?>"/></span></div>
 				<div class="formRow"><span class="formLabel">Quantity:</span><span class="formInput"><input type="text" name="quantity" value="<?php echo $getSub->quantity?>"/></span></div>
 				<div class="formRow"><span class="formLabel">Coupon:</span><span class="formInput"><input type="text" name="coupon" value=""/></span></div>
+				<div class="formRow"><span class="formLabel">DiscountDuration:</span><span class="formInput"><input type="text" name="discountduration" value=""/></span></div>
 				<div class="formRow"><span class="formLabel">No End Date:</span><span class="formInput"><input type="checkbox" name="noenddate" value="noenddate"/></span></div>
 				<div class="formRow"><span class="formLabel">Proration:</span><span class="formInput"><input type="checkbox" name="proration" value="proration"/></span></div>
 				<div class="formRow"><input type="submit" name="update" value="Update Subscription"/></div>

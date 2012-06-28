@@ -90,6 +90,7 @@ Then you instantiate a new FastSpring object with the parameters that match your
 	public $tags;
 	public $noEndDate;
 	public $coupon;
+	public $discountDuration;
 	public $proration;
 
 

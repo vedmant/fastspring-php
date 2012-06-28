@@ -270,6 +270,7 @@ class FsprgSubscriptionUpdate {
 	public $tags;
 	public $noEndDate;
 	public $coupon;
+	public $discountDuration;
 	public $proration;
 	
 	public function __construct($subscription_ref) {
@@ -293,6 +294,9 @@ class FsprgSubscriptionUpdate {
 		}
 		if ($this->coupon) {
 			$xmlResult->coupon = $this->coupon;
+		}
+		if ($this->discountDuration) {
+			$xmlResult->addChild("discount-duration", $this->discountDuration);
 		}
 		if (isset($this->proration)) {
 			if ($this->proration) {
