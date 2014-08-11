@@ -1,0 +1,12 @@
+{
+	"name":"FastSpring/fastspring-php",
+	"type":"library",
+	"description":"FastSpring PHP Library for subscription payments",
+	"license":"proprietary",
+	"require":{
+		"php":">5.3.0"
+	},
+	"autoload": {
+            "files": ["fastspring.php"]
+	}
+}
