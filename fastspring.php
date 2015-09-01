@@ -212,8 +212,6 @@ class FastSpring
 		$info     = curl_getinfo($ch);
 
 		if($info["http_code"] != 201) {
-			var_dump($info);
-			die();
 			$fsprgEx                 = new FsprgException("An error occurred calling the FastSpring subscription service");
 			$fsprgEx->httpStatusCode = $info["http_code"];
 			$fsprgEx->errorCode      = $response;
