@@ -215,21 +215,25 @@ div.formRow span.formInput {
 
 		<form method="post">
 			<input type="hidden" name="productPath" value="starter"/>
+			<input type="hidden" name="proration" value="1"/>
 			<input type="submit" name="update" value="Starter"/>
 		</form>
 
 		<form method="post">
 			<input type="hidden" name="productPath" value="basic"/>
+			<input type="hidden" name="proration" value="1"/>
 			<input type="submit" name="update" value="Basic"/>
 		</form>
 
 		<form method="post">
 			<input type="hidden" name="productPath" value="business"/>
+			<input type="hidden" name="proration" value="1"/>
 			<input type="submit" name="update" value="Business"/>
 		</form>
 
 		<form method="post">
 			<input type="hidden" name="productPath" value="enterprise"/>
+			<input type="hidden" name="proration" value="1"/>
 			<input type="submit" name="update" value="Enterprise"/>
 		</form>
 
