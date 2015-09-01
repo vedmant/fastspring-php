@@ -4,4 +4,13 @@ define("FS_COMPANY_ID", "");
 define("FS_STORE_ID", "");
 define("FS_EMAIL", "");
 define("FS_PASSWORD", "");
-define("FS_PRODUCT_ID", "");
+
+/**
+ * Subscription plans
+ */
+$fs_plans = array(
+	'starter'    => 'Starter',
+	'basic'      => 'Basic',
+	'business'   => 'Business',
+	'enterprise' => 'Enterprise',
+);

@@ -3,7 +3,11 @@ if(! function_exists("curl_init")) {
 	throw new Exception("FastSpring API needs the CURL PHP extension.");
 }
 
-
+/**
+ * Fastspring api class
+ *
+ * Class FastSpring
+ */
 class FastSpring
 {
 
@@ -294,6 +298,11 @@ class FastSpring
 	}
 }
 
+/**
+ * Fastspring Subscription item
+ *
+ * Class FsprgSubscription
+ */
 class FsprgSubscription
 {
 	public $status;
@@ -309,6 +318,11 @@ class FsprgSubscription
 	public $quantity;
 }
 
+/**
+ * Fastspring customer item
+ *
+ * Class FsprgCustomer
+ */
 class FsprgCustomer
 {
 	public $firstName;
@@ -318,6 +332,11 @@ class FsprgCustomer
 	public $phoneNumber;
 }
 
+/**
+ * Subscription update item, used with FastSpring::updateSubscription() function
+ *
+ * Class FsprgSubscriptionUpdate
+ */
 class FsprgSubscriptionUpdate
 {
 	public $reference;
@@ -368,17 +387,34 @@ class FsprgSubscriptionUpdate
 	}
 }
 
+/**
+ * Cancel subscription response class
+ *
+ * Class FsprgCancelSubscriptionResponse
+ */
 class FsprgCancelSubscriptionResponse
 {
 	public $subscription;
 }
 
+/**
+ * FastSpring exception
+ *
+ * Class FsprgException
+ */
 class FsprgException extends Exception
 {
 	public $httpStatusCode;
 	public $errorCode;
 }
 
+/**
+ * FastSpring Api custom errors handler
+ *
+ * @param $number
+ * @param $error
+ * @throws Exception
+ */
 function domDocumentErrorHandler($number, $error)
 {
 	if(preg_match("/^DOMDocument::load\([^:]+: (.+)$/", $error, $m) === 1) {

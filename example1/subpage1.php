@@ -87,20 +87,10 @@ try {
 	Note: No attributes should appear on the body tag.  They will be ignored.  Use CSS to style the body.
 -->
 <style>
-div.formRow {
-  clear: both;
-  padding-top: 5px;
-  }
-
-div.formRow span.formLabel {
-  float: left;
-  width: 150px;
-  text-align: right;
-  }
-
-div.formRow span.formInput {
-  text-align: left;
-  } 
+	.formRow{clear: both; padding-top: 5px;}
+	.formRow .formLabel{float: left; width: 150px; text-align: right;}
+	.formRow .formInput{text-align: left;}
+	.change-plan.selected input[type="submit"]{color: red;};
 </style>
 <body> 
 <div id="header">
@@ -213,29 +203,15 @@ div.formRow span.formInput {
 
 		<h4>Or update Plan</h4>
 
-		<form method="post">
-			<input type="hidden" name="productPath" value="starter"/>
-			<input type="hidden" name="proration" value="1"/>
-			<input type="submit" name="update" value="Starter"/>
-		</form>
+		<?php foreach($fs_plans as $plan_id => $plan_name): ?>
 
-		<form method="post">
-			<input type="hidden" name="productPath" value="basic"/>
-			<input type="hidden" name="proration" value="1"/>
-			<input type="submit" name="update" value="Basic"/>
-		</form>
+			<form method="post" class="change-plan <?php if($getSub->productName == $plan_name) echo 'selected'; ?>">
+				<input type="hidden" name="productPath" value="<?php echo $plan_id; ?>"/>
+				<input type="hidden" name="proration" value="1"/>
+				<input type="submit" name="update" value="<?php echo $plan_name; ?>"/>
+			</form>
 
-		<form method="post">
-			<input type="hidden" name="productPath" value="business"/>
-			<input type="hidden" name="proration" value="1"/>
-			<input type="submit" name="update" value="Business"/>
-		</form>
-
-		<form method="post">
-			<input type="hidden" name="productPath" value="enterprise"/>
-			<input type="hidden" name="proration" value="1"/>
-			<input type="submit" name="update" value="Enterprise"/>
-		</form>
+		<?php endforeach; ?>
 
 		<br><br>
 		
