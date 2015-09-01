@@ -57,7 +57,7 @@ class FastSpring_Helper
 	 */
 	public static function get_subscription($user_id)
 	{
-		$file = CUSTOMER_DATA_DIR."/$user_id.txt";
+		$file = CUSTOMER_DATA_DIR."/$user_id.json";
 		if(file_exists($file)) {
 			$subscription_data = json_decode(file_get_contents($file));
 			if($subscription_data) return $subscription_data;
@@ -88,7 +88,7 @@ class FastSpring_Helper
 	 */
 	public static function save_subscription($user_id, $subscription_data)
 	{
-		$file = CUSTOMER_DATA_DIR."/$user_id.txt";
+		$file = CUSTOMER_DATA_DIR."/$user_id.json";
 
 		unset($_SESSION['subscription_update']);
 		file_put_contents($file, json_encode($subscription_data));
@@ -101,7 +101,7 @@ class FastSpring_Helper
 	 */
 	public static function delete_subscription($user_id)
 	{
-		$file = CUSTOMER_DATA_DIR."/$user_id.txt";
+		$file = CUSTOMER_DATA_DIR."/$user_id.json";
 
 		unset($_SESSION['subscription_update']);
 		unlink($file);
