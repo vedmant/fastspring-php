@@ -2,15 +2,13 @@
 include "include.php";
 
 /** Get the customer's ref */
-$customer_ref = $_SESSION["customer_ref"];
+$user_id = $_SESSION["user_id"];
 
-if (isSubscribed($customer_ref)) {
+if (FastSpring_Helper::is_subscribed($user_id)) {
 	$redirectToUrl = "subpage1.php";
 	 
 	header("Location: $redirectToUrl");
 } else {
-	$fastspring->createSubscription(product_id, $customer_ref);
+	$fastspring->createSubscription(FS_PRODUCT_ID, $user_id);
 }
 
-exit();
-?>

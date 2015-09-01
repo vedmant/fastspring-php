@@ -1,26 +1,28 @@
 <?php
 include "include.php";
 
-if (!isSubscribed($_SESSION["customer_ref"])) {
+if (! FastSpring_Helper::is_subscribed($_SESSION["user_id"])) {
 	header("location:billing.php");
-	
+
 	exit();
 }
 
+$subscription_ref = FastSpring_Helper::get_subscription_ref($_SESSION["user_id"]);
+
 if (isset($_POST["cancel"])) {
 	try {
-		$cancelSub = $fastspring->cancelSubscription($_SESSION["subscription_ref"]);
+		$cancelSub = $fastspring->cancelSubscription($subscription_ref);
 	} catch (FsprgException $cancelEx) {
-		// Error can be handled here
+		// die($cancelEx);
 	}
 } elseif (isset($_POST["renew"])) {
 	try {
-		$fastspring->renewSubscription($_SESSION["subscription_ref"]);
+		$fastspring->renewSubscription($subscription_ref);
 	} catch (FsprgException $renewEx) {
 		// Error can be handled here
 	}
 } elseif (isset($_POST["update"])) {
-	$update = new FsprgSubscriptionUpdate($_SESSION["subscription_ref"]);
+	$update = new FsprgSubscriptionUpdate($subscription_ref);
 	
 	if (isset($_POST["productPath"])) {
 		$update->productPath = $_POST["productPath"];
@@ -54,7 +56,7 @@ if (isset($_POST["cancel"])) {
 }
 
 try {
-	$getSub = $fastspring->getSubscription($_SESSION["subscription_ref"]);
+	$getSub = $fastspring->getSubscription($subscription_ref);
 } catch (FsprgException $getEx) {
 	// Error can be handled here
 }
@@ -92,7 +94,7 @@ div.formRow {
 
 div.formRow span.formLabel {
   float: left;
-  width: 100px;
+  width: 150px;
   text-align: right;
   }
 
@@ -194,16 +196,44 @@ div.formRow span.formInput {
 		
 		<p>
 			<form method="post">
-				<div class="formRow"><span class="formLabel">Product Path:</span><span class="formInput"><input type="text" name="productPath" value=""/></span></div>
+				<div class="formRow"><span class="formLabel">Product Path:</span><span class="formInput"><input type="text" name="productPath" value=""/></span>
+					Partial URL Path. E.g. /plana. See <a href="https://support.fastspring.com/entries/20773966-page-linking-options">Page Linking Options</a>
+				</div>
 				<div class="formRow"><span class="formLabel">Tags:</span><span class="formInput"><input type="text" name="tags" value="<?php echo $getSub->tags?>"/></span></div>
 				<div class="formRow"><span class="formLabel">Quantity:</span><span class="formInput"><input type="text" name="quantity" value="<?php echo $getSub->quantity?>"/></span></div>
 				<div class="formRow"><span class="formLabel">Coupon:</span><span class="formInput"><input type="text" name="coupon" value=""/></span></div>
 				<div class="formRow"><span class="formLabel">DiscountDuration:</span><span class="formInput"><input type="text" name="discountduration" value=""/></span></div>
 				<div class="formRow"><span class="formLabel">No End Date:</span><span class="formInput"><input type="checkbox" name="noenddate" value="noenddate"/></span></div>
-				<div class="formRow"><span class="formLabel">Proration:</span><span class="formInput"><input type="checkbox" name="proration" value="proration"/></span></div>
+				<div class="formRow"><span class="formLabel">Proration:</span><span class="formInput"><input type="checkbox" name="proration" value="proration"/></span>
+					If true a prorated refund will be made to reimburse the customer for their current use. See <a href="https://support.fastspring.com/entries/20077837-upgrading-downgrading-changing-plans">Upgrading / Downgrading / Changing Plans</a>
+				</div>
 				<div class="formRow"><input type="submit" name="update" value="Update Subscription"/></div>
 			</form>
 		</p>
+
+		<h4>Or update Plan</h4>
+
+		<form method="post">
+			<input type="hidden" name="productPath" value="starter"/>
+			<input type="submit" name="update" value="Starter"/>
+		</form>
+
+		<form method="post">
+			<input type="hidden" name="productPath" value="basic"/>
+			<input type="submit" name="update" value="Basic"/>
+		</form>
+
+		<form method="post">
+			<input type="hidden" name="productPath" value="business"/>
+			<input type="submit" name="update" value="Business"/>
+		</form>
+
+		<form method="post">
+			<input type="hidden" name="productPath" value="enterprise"/>
+			<input type="submit" name="update" value="Enterprise"/>
+		</form>
+
+		<br><br>
 		
 <?php 
 	if (isset($updateSub)) {

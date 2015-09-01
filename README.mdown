@@ -5,6 +5,9 @@
 </head>
 <body>
 
+# About this Fork #
+Redesigned example with separated company id and store id values, improved subscription file storage and some example subscriptions plans for upgrade test
+
 # About FastSpring #
 [FastSpring](http://www.fastspring.com) offers an innovative e-commerce engine designed to overcome ease of use, customer service, and cost issues that have plagued software e-commerce companies. We employ a customer-driven, iterative and collaborative Agile development process.
 
